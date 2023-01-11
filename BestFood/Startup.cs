@@ -1,7 +1,7 @@
 ﻿using BestFood.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace LanchesMac;
+namespace BestFood;
 public class Startup
 {
     public Startup(IConfiguration configuration)

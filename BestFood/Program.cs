@@ -1,4 +1,4 @@
-namespace LanchesMac;
+namespace BestFood;
 public class Program
 {
     public static void Main(string[] args)
