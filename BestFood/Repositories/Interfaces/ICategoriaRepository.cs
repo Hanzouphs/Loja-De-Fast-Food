@@ -1,6 +1,10 @@
-﻿namespace BestFood.Repositories.Interfaces
+﻿using BestFood.Models;
+
+namespace BestFood.Repositories.Interfaces
 {
-    public interface Interface
+    public interface ICategoriaRepository
+
     {
+        IEnumerable<Categoria> Categorias { get; }  
     }
 }

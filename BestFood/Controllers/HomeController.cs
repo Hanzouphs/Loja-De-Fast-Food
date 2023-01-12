@@ -12,6 +12,7 @@ namespace BestFood.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
