@@ -13,7 +13,7 @@ namespace BestFood.Models
         }
 
         public string CarrinhoCompraId { get; set; }
-        public List <CarrinhoCompraItem> CarrinhoCompraItems { get; set; }
+        public List <CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
         {
             //define uma sessão
@@ -84,10 +84,10 @@ namespace BestFood.Models
             return quantidadeLocal;
         }
 
-        public List<CarrinhoCompraItem> GetCarrinhoCompraItems()
+        public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
         {
-            return CarrinhoCompraItems ??
-                (CarrinhoCompraItems =
+            return CarrinhoCompraItens ??
+                (CarrinhoCompraItens =
                 _context.CarrinhoCompraItens
                 .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                 .Include(s => s.Lanche)
@@ -103,7 +103,7 @@ namespace BestFood.Models
             _context.SaveChanges();
         }
 
-        public decimal GetCarrinhoTotal()
+        public decimal GetCarrinhoCompraTotal()
         {
             var total = _context.CarrinhoCompraItens
                 .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)

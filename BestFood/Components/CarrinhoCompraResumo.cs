@@ -15,13 +15,14 @@ namespace BestFood.Components
 
         public IViewComponentResult Invoke()
         {
-            var itens = _carrinhoCompra.GetCarrinhoCompraItems();
-            _carrinhoCompra.CarrinhoCompraItems = itens;
+            var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+         
+            _carrinhoCompra.CarrinhoCompraItens = itens;
 
             var carrinhoCompraVM = new CarrinhoCompraViewModel
             {
                 CarrinhoCompra = _carrinhoCompra,
-                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoTotal()
+                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal()
             };
             return View(carrinhoCompraVM);
         }
