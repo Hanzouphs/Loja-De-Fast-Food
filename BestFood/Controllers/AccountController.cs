@@ -21,10 +21,10 @@ namespace BestFood.Controllers
             return View(new LoginViewModel()
             {
                 ReturnUrl = returnUrl
-            });          
+            });
         }
 
-        [HttpPost]  
+        [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
             if (!ModelState.IsValid)
@@ -32,22 +32,46 @@ namespace BestFood.Controllers
 
             var user = await _userManager.FindByNameAsync(loginVM.UserName);
 
-            if (user !=null)
+            if (user != null)
             {
                 var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
-                if (result.Succeeded) 
-                { 
+                if (result.Succeeded)
+                {
                     if (string.IsNullOrEmpty(loginVM.ReturnUrl))
                     {
-                        return RedirectToAction("Index", "Home");   
+                        return RedirectToAction("Index", "Home");
                     }
-                    return Redirect(loginVM.ReturnUrl); 
+                    return Redirect(loginVM.ReturnUrl);
                 }
             }
 
             ModelState.AddModelError("", "Falha ao realizar o login!");
             return View(loginVM);
         }
-       
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(LoginViewModel registroVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser { UserName = registroVM.UserName };
+                var result = await _userManager.CreateAsync(user, registroVM.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    this.ModelState.AddModelError("Registro", "Falha ao registrar o usuário");
+                }
+            }
+            return View(registroVM);
+        }
     }
 }
