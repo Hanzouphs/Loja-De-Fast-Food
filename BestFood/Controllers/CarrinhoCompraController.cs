@@ -1,6 +1,7 @@
 ﻿using BestFood.Models;
 using BestFood.Repositories.Interfaces;
 using BestFood.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BestFood.Controllers
@@ -29,6 +30,7 @@ namespace BestFood.Controllers
             return View(carrinhoCompraVM);
         }
 
+        [Authorize]
         public IActionResult AdicionarItemNoCarrinhoCompra(int lancheId) {
             var lancheSelecionado = _lancheRepository.Lanches
                 .FirstOrDefault(p => p.LancheId == lancheId);
@@ -40,6 +42,7 @@ namespace BestFood.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult RemoverItemDoCarrinhoCompra(int lancheId)
         {
             var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);

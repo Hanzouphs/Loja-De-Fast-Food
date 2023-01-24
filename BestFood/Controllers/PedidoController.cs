@@ -1,6 +1,7 @@
 ﻿using BestFood.Models;
 using BestFood.Repositories;
 using BestFood.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -17,12 +18,13 @@ namespace BestFood.Controllers
             _carrinhoCompra = carrinhoCompra;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Pedido pedido)
         {
