@@ -5,6 +5,7 @@ using BestFood.Repositories.Interfaces;
 using BestFood.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace BestFood;
 public class Startup
@@ -45,6 +46,12 @@ public class Startup
 
 
         services.AddControllersWithViews();
+
+        services.AddPaging(options =>
+        {
+            options.ViewName = "Bootstrap4";
+            options.PageParameterName = "pageindex";
+        });
 
         services.AddMemoryCache();
         services.AddSession();
