@@ -1,4 +1,5 @@
-﻿using BestFood.Context;
+﻿using BestFood.Areas.Admin.Views.Admin.Services;
+using BestFood.Context;
 using BestFood.Models;
 using BestFood.Repositories;
 using BestFood.Repositories.Interfaces;
@@ -31,6 +32,7 @@ public class Startup
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<IPedidoRepository, PedidoRepository>();
         services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+        services.AddScoped<RelatorioVendaService>();
 
         services.AddAuthorization(options =>
         {
